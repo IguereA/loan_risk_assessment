@@ -17,9 +17,7 @@ st.markdown("""
     <style>
     
   
-
-
-        /* 1. GLOBAL & BACKGROUND */
+    /* 1. GLOBAL & BACKGROUND */
     .stApp {
         background-color: #2F353B;
         color: #F5F5F5 !important;
@@ -27,8 +25,8 @@ st.markdown("""
     label, p, span, .stMarkdown, .stText, [data-testid="stWidgetLabel"] p {
         color: #F5F5F5 !important;
     }
-    
-    /* 2. THE TABS (Kept separate so they stay rounded/red) */
+
+    /* 2. THE TABS (Kept separate so they stay rounded/teal) */
     button[data-baseweb="tab"] {
         background-color: #4A4E54 !important;
         border-radius: 10px 10px 0px 0px !important;
@@ -38,21 +36,21 @@ st.markdown("""
         border: none !important;
     }
     button[data-baseweb="tab"][aria-selected="true"] {
-        background-color: #8B0000 !important; /* changed from teal */
-        color: #FF4500 !important; /* changed from teal accent */
+        background-color: #008080 !important;
+        color: #00FFF0 !important;
         font-weight: bold !important;
     }
     div[data-baseweb="tab-highlight"] {
         background-color: transparent !important;
     }
-    
+
     /* 3. UNIFIED BUTTONS (Download, Browse, and Process) */
     div.stButton > button, 
     div.stDownloadButton > button, 
     label[data-testid="stFileUploaderButton"] {
         background-color: #4A4E54 !important;
         color: #F5F5F5 !important;
-        border: 1px solid #8B0000 !important; /* changed from teal */
+        border: 1px solid #008080 !important;
         border-radius: 8px !important;
         padding: 0.5rem 1rem !important;
         transition: 0.3s !important;
@@ -63,54 +61,69 @@ st.markdown("""
         height: auto !important;
         width: auto !important;
     }
-    
+
     /* Hover effect for all buttons */
     div.stButton > button:hover, 
     div.stDownloadButton > button:hover, 
     label[data-testid="stFileUploaderButton"]:hover {
-        border-color: #FF4500 !important; /* changed from teal accent */
+        border-color: #00FFF0 !important;
         background-color: #3d4147 !important;
-        color: #FF4500 !important; /* changed from teal accent */
+        color: #00FFF0 !important;
     }
+
+
+
+/* 4. FILE UPLOADER BOX & SLIDER FIXES */
     
-    /* 4. FILE UPLOADER BOX & SLIDER FIXES */
+    /* The Container: Centering everything correctly */
     [data-testid="stFileUploader"] section {
         background-color: #3d4147 !important; 
-        border: 1px dashed #8B0000 !important; /* changed from teal */
+        border: 1px dashed #008080 !important;
         border-radius: 10px !important;
         color: #F5F5F5 !important;
         display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
+        flex-direction: row !important; /* Items sit side-by-side */
+        align-items: center !important; /* Vertical center */
         padding: 20px !important;
     }
+
+    /* Wrap the Cloud Icon and Drag-and-Drop text to keep them together */
+    /* This ensures they stay centered while the button goes right */
     [data-testid="stFileUploader"] section > div:nth-child(1) {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: center !important;
-        flex-grow: 1 !important;
-        margin-left: 100px !important;
+        flex-grow: 1 !important; /* Takes up middle space to center content */
+        margin-left: 100px !important; /* Offsets the button's width to keep text dead-center */
     }
+
+    /* THE BROWSE FILES BUTTON: Stays inside on the right */
     [data-testid="stFileUploader"] button {
         background-color: #4A4E54 !important;
         color: #F5F5F5 !important;
-        border: 1px solid #8B0000 !important; /* changed from teal */
+        border: 1px solid #008080 !important;
         border-radius: 8px !important;
-        margin-left: auto !important;
+        margin-left: auto !important; /* Pushes button to the far right */
         padding: 8px 16px !important;
         z-index: 10 !important;
     }
+
+    /* Button Hover */
     [data-testid="stFileUploader"] button:hover {
-        border-color: #FF4500 !important; /* changed from teal accent */
-        color: #FF4500 !important; /* changed from teal accent */
+        border-color: #00FFF0 !important;
+        color: #00FFF0 !important;
         background-color: #3d4147 !important;
     }
+
+    /* The Cloud Icon */
     [data-testid="stFileUploader"] svg {
-        fill: #FF4500 !important; /* changed from teal accent */
+        fill: #00FFF0 !important;
         margin-right: 15px !important;
         transform: scale(1.3) !important;
     }
+
+    /* Uploaded File List Visibility (Bottom left) */
     [data-testid="stFileUploaderFileName"], 
     [data-testid="stFileUploader"] ul li {
         color: #F5F5F5 !important;
@@ -124,16 +137,14 @@ st.markdown("""
         background-color: #4A4E54 !important; 
     }
     .stSlider [data-baseweb="thumb"] {
-        background-color: #8B0000 !important; /* changed from teal */
-        border: 2px solid #FF4500 !important; /* changed from teal accent */
+        background-color: #008080 !important;
+        border: 2px solid #00FFF0 !important;
     }
+
     
     /* 5. SCROLLBAR */
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-thumb { background: #F5F5F5; border-radius: 5px; }
-
-    
-    
     </style>
     """, unsafe_allow_html=True)
 
@@ -208,7 +219,7 @@ tab1, tab2 = st.tabs(["Single Assessment", "Batch Processing"])
 with tab1:
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.subheader("📋 Personal")
+        st.subheader("📋 Personal Details")
         age = st.number_input("Age", 18, 100, 30, key="s_age")
         edu = st.selectbox("Education Level", ['Secondary', 'OND', 'HND', 'BSc', 'MSc'], key="s_edu")
         emp = st.selectbox("Employment Type", ['Business_Owner', 'Salary_Earner', 'Self_Employed', 'Freelancer'], key="s_emp")
@@ -222,7 +233,7 @@ with tab1:
         deps = st.number_input("Dependents", 0, 20, 0, key="s_dep")
         bank_acc = st.radio("Has Bank Account?", ["Yes", "No"], key="s_bank")
     with col3:
-        st.subheader("📈 Credit")
+        st.subheader("📈 Credit History")
         score = st.slider("Credit Score", 300, 850, 650, key="s_score")
         prev_loans = st.number_input("Previous Loans", 0, 50, 0, key="s_pl")
         prev_def = st.number_input("Previous Defaults", 0, 50, 0, key="s_pd")
