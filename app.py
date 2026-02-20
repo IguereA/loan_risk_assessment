@@ -11,118 +11,131 @@ st.set_page_config(page_title="Loan Risk Prediction", page_icon="🏦", layout="
 
 
 # --- CUSTOM CSS ---
-/* 1. GLOBAL & BACKGROUND */
-.stApp {
-    background-color: #2F353B;
-    color: #F5F5F5 !important;
-}
-label, p, span, .stMarkdown, .stText, [data-testid="stWidgetLabel"] p {
-    color: #F5F5F5 !important;
-}
 
-/* 2. THE TABS (Kept separate so they stay rounded/red) */
-button[data-baseweb="tab"] {
-    background-color: #4A4E54 !important;
-    border-radius: 10px 10px 0px 0px !important;
-    padding: 10px 20px !important;
-    margin-right: 5px !important;
-    color: #D1D1D1 !important;
-    border: none !important;
-}
-button[data-baseweb="tab"][aria-selected="true"] {
-    background-color: #8B0000 !important; /* changed from teal */
-    color: #FF4500 !important; /* changed from teal accent */
-    font-weight: bold !important;
-}
-div[data-baseweb="tab-highlight"] {
-    background-color: transparent !important;
-}
+    
+st.markdown("""
+    <style>
+    
+  
 
-/* 3. UNIFIED BUTTONS (Download, Browse, and Process) */
-div.stButton > button, 
-div.stDownloadButton > button, 
-label[data-testid="stFileUploaderButton"] {
-    background-color: #4A4E54 !important;
-    color: #F5F5F5 !important;
-    border: 1px solid #8B0000 !important; /* changed from teal */
-    border-radius: 8px !important;
-    padding: 0.5rem 1rem !important;
-    transition: 0.3s !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-weight: 400 !important;
-    height: auto !important;
-    width: auto !important;
-}
 
-/* Hover effect for all buttons */
-div.stButton > button:hover, 
-div.stDownloadButton > button:hover, 
-label[data-testid="stFileUploaderButton"]:hover {
-    border-color: #FF4500 !important; /* changed from teal accent */
-    background-color: #3d4147 !important;
-    color: #FF4500 !important; /* changed from teal accent */
-}
+        /* 1. GLOBAL & BACKGROUND */
+    .stApp {
+        background-color: #2F353B;
+        color: #F5F5F5 !important;
+    }
+    label, p, span, .stMarkdown, .stText, [data-testid="stWidgetLabel"] p {
+        color: #F5F5F5 !important;
+    }
+    
+    /* 2. THE TABS (Kept separate so they stay rounded/red) */
+    button[data-baseweb="tab"] {
+        background-color: #4A4E54 !important;
+        border-radius: 10px 10px 0px 0px !important;
+        padding: 10px 20px !important;
+        margin-right: 5px !important;
+        color: #D1D1D1 !important;
+        border: none !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        background-color: #8B0000 !important; /* changed from teal */
+        color: #FF4500 !important; /* changed from teal accent */
+        font-weight: bold !important;
+    }
+    div[data-baseweb="tab-highlight"] {
+        background-color: transparent !important;
+    }
+    
+    /* 3. UNIFIED BUTTONS (Download, Browse, and Process) */
+    div.stButton > button, 
+    div.stDownloadButton > button, 
+    label[data-testid="stFileUploaderButton"] {
+        background-color: #4A4E54 !important;
+        color: #F5F5F5 !important;
+        border: 1px solid #8B0000 !important; /* changed from teal */
+        border-radius: 8px !important;
+        padding: 0.5rem 1rem !important;
+        transition: 0.3s !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 400 !important;
+        height: auto !important;
+        width: auto !important;
+    }
+    
+    /* Hover effect for all buttons */
+    div.stButton > button:hover, 
+    div.stDownloadButton > button:hover, 
+    label[data-testid="stFileUploaderButton"]:hover {
+        border-color: #FF4500 !important; /* changed from teal accent */
+        background-color: #3d4147 !important;
+        color: #FF4500 !important; /* changed from teal accent */
+    }
+    
+    /* 4. FILE UPLOADER BOX & SLIDER FIXES */
+    [data-testid="stFileUploader"] section {
+        background-color: #3d4147 !important; 
+        border: 1px dashed #8B0000 !important; /* changed from teal */
+        border-radius: 10px !important;
+        color: #F5F5F5 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        padding: 20px !important;
+    }
+    [data-testid="stFileUploader"] section > div:nth-child(1) {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-grow: 1 !important;
+        margin-left: 100px !important;
+    }
+    [data-testid="stFileUploader"] button {
+        background-color: #4A4E54 !important;
+        color: #F5F5F5 !important;
+        border: 1px solid #8B0000 !important; /* changed from teal */
+        border-radius: 8px !important;
+        margin-left: auto !important;
+        padding: 8px 16px !important;
+        z-index: 10 !important;
+    }
+    [data-testid="stFileUploader"] button:hover {
+        border-color: #FF4500 !important; /* changed from teal accent */
+        color: #FF4500 !important; /* changed from teal accent */
+        background-color: #3d4147 !important;
+    }
+    [data-testid="stFileUploader"] svg {
+        fill: #FF4500 !important; /* changed from teal accent */
+        margin-right: 15px !important;
+        transform: scale(1.3) !important;
+    }
+    [data-testid="stFileUploaderFileName"], 
+    [data-testid="stFileUploader"] ul li {
+        color: #F5F5F5 !important;
+        background-color: #2F353B !important;
+        border: 1px solid #4A4E54 !important;
+    }
+    
+    /* SLIDERS */
+    .stSlider [data-baseweb="slider"] > div {
+        height: 4px !important;
+        background-color: #4A4E54 !important; 
+    }
+    .stSlider [data-baseweb="thumb"] {
+        background-color: #8B0000 !important; /* changed from teal */
+        border: 2px solid #FF4500 !important; /* changed from teal accent */
+    }
+    
+    /* 5. SCROLLBAR */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-thumb { background: #F5F5F5; border-radius: 5px; }
 
-/* 4. FILE UPLOADER BOX & SLIDER FIXES */
-[data-testid="stFileUploader"] section {
-    background-color: #3d4147 !important; 
-    border: 1px dashed #8B0000 !important; /* changed from teal */
-    border-radius: 10px !important;
-    color: #F5F5F5 !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    padding: 20px !important;
-}
-[data-testid="stFileUploader"] section > div:nth-child(1) {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-grow: 1 !important;
-    margin-left: 100px !important;
-}
-[data-testid="stFileUploader"] button {
-    background-color: #4A4E54 !important;
-    color: #F5F5F5 !important;
-    border: 1px solid #8B0000 !important; /* changed from teal */
-    border-radius: 8px !important;
-    margin-left: auto !important;
-    padding: 8px 16px !important;
-    z-index: 10 !important;
-}
-[data-testid="stFileUploader"] button:hover {
-    border-color: #FF4500 !important; /* changed from teal accent */
-    color: #FF4500 !important; /* changed from teal accent */
-    background-color: #3d4147 !important;
-}
-[data-testid="stFileUploader"] svg {
-    fill: #FF4500 !important; /* changed from teal accent */
-    margin-right: 15px !important;
-    transform: scale(1.3) !important;
-}
-[data-testid="stFileUploaderFileName"], 
-[data-testid="stFileUploader"] ul li {
-    color: #F5F5F5 !important;
-    background-color: #2F353B !important;
-    border: 1px solid #4A4E54 !important;
-}
-
-/* SLIDERS */
-.stSlider [data-baseweb="slider"] > div {
-    height: 4px !important;
-    background-color: #4A4E54 !important; 
-}
-.stSlider [data-baseweb="thumb"] {
-    background-color: #8B0000 !important; /* changed from teal */
-    border: 2px solid #FF4500 !important; /* changed from teal accent */
-}
-
-/* 5. SCROLLBAR */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-thumb { background: #F5F5F5; border-radius: 5px; }
+    
+    
+    </style>
+    """, unsafe_allow_html=True)
 
 
 # --- UNDER TAB 1: Update the button line ---
