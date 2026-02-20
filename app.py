@@ -209,7 +209,7 @@ def preprocess_data(input_df):
     return df_final
 
 # --- UI SETUP ---
-st.title("Banking Credit Risk Assessment Tool")
+st.title("Digital Lending Risk Assessment System")
 st.markdown("This app predicts the likelihood of loan default based on applicant profiles.")
 
 # Create Tabs
@@ -229,8 +229,8 @@ with tab1:
         st.subheader("💵 Financials")
         income = st.number_input("Monthly Income (₦)", 1000.0, value=150000.0, key="s_inc")
         loan_amt = st.number_input("Loan Amount (₦)", 1000.0, value=500000.0, key="s_loan")
-        duration = st.number_input("Duration (Months)", 1, 120, 12, key="s_dur")
-        deps = st.number_input("Dependents", 0, 20, 0, key="s_dep")
+        duration = st.number_input("Loan Duration (Months)", 1, 120, 12, key="s_dur")
+        deps = st.number_input("Number of Dependents", 0, 20, 0, key="s_dep")
         bank_acc = st.radio("Has Bank Account?", ["Yes", "No"], key="s_bank")
     with col3:
         st.subheader("📈 Credit History")
@@ -268,7 +268,7 @@ with tab1:
 
 # --- TAB 2: BATCH PROCESSING ---
 with tab2:
-    st.subheader("Batch Loan Processing")
+    st.subheader("Batch Loan Assessment")
     st.write("Upload a CSV or Excel file. Ensure columns match the required format.")
     
     # Template download
