@@ -210,7 +210,7 @@ def preprocess_data(input_df):
 
 # --- UI SETUP ---
 st.title("Digital Lending Risk Assessment System")
-st.markdown("This app predicts the likelihood of loan default based on applicant profiles.")
+st.markdown("This app predicts the likelihood of loan default based on applicant profiles")
 
 # Create Tabs
 tab1, tab2 = st.tabs(["Single Assessment", "Batch Processing"])
